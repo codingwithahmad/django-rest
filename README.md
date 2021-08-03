@@ -1,5 +1,7 @@
 # Django-rest
 
-TODO- [x] ADD REST APP
+TODO
+
+-[x] Add rest-framework to settings app
 
 
