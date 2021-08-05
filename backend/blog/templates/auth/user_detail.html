@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block main %}
+
+<article>
+    <h2>{{ object.username }}</h2>
+    <div>
+        {{ object.password }}
+    </div>
+    <div>{{ object.date_joined }}</div>
+    <p>{{ object.last_login }}</p>
+</article>
+
+{% endblock %}

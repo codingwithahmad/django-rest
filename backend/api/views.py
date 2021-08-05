@@ -1,9 +1,10 @@
 #from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
 from blog.models import Articles
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializer import ArticleSerializer
+from .serializer import ArticleSerializer, UsersSerializer
+from django.contrib.auth.models import User
 
 # Create your views here.
 class ArticleList(ListCreateAPIView):
@@ -28,6 +29,36 @@ class ArticleList(ListCreateAPIView):
 
 #         return Response(data=data)
 
-class ArticleDetail(RetrieveDestroyAPIView):
+class ArticleDetail(RetrieveUpdateDestroyAPIView):
     queryset = Articles.objects.all()
     serializer_class = ArticleSerializer
+
+
+class ArticleDetailUpdate(RetrieveUpdateAPIView):
+    queryset = Articles.objects.all()
+    serializer_class = ArticleSerializer
+
+class ArticleDetailDelete(RetrieveDestroyAPIView):
+    queryset = Articles.objects.all()
+    serializer_class = ArticleSerializer
+
+
+class ArticleDetailSlug(RetrieveAPIView):
+    queryset = Articles.objects.all()
+    serializer_class = ArticleSerializer
+    lookup_field = "slug"
+
+
+
+
+
+
+
+class UserDetail(RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
+
+
+class UserList(ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
