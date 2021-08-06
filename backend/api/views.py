@@ -1,5 +1,6 @@
 #from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
+from rest_framework.permissions import IsAdminUser
 from blog.models import Articles
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -41,7 +42,7 @@ class ArticleDetailUpdate(RetrieveUpdateAPIView):
 class ArticleDetailDelete(RetrieveDestroyAPIView):
     queryset = Articles.objects.all()
     serializer_class = ArticleSerializer
-
+    
 
 class ArticleDetailSlug(RetrieveAPIView):
     queryset = Articles.objects.all()
@@ -57,8 +58,10 @@ class ArticleDetailSlug(RetrieveAPIView):
 class UserDetail(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UsersSerializer
+    permission_classes = (IsAdminUser, )
 
 
 class UserList(ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UsersSerializer
+    permission_classes = (IsAdminUser, )
