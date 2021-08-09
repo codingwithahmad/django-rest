@@ -7,3 +7,4 @@
 - [x] Add update and delete views for single article in api app
 - [x] Add a total permission for all apps in settings.py in config
 - [x] Add permission in UserList and UserDetails views for api app
+- [x] Add permission.py in api app and write first custom permission 
